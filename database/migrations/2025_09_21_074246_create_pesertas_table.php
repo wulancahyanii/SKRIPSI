@@ -10,19 +10,21 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-       // database/migrations/xxxx_create_pesertas_table.php
-Schema::create('pesertas', function (Blueprint $table) {
-    $table->id();
-    $table->string('nama');
-    $table->string('jenis_kelamin');
-    $table->integer('usia');
-    $table->string('alamat');
-    $table->string('foto')->nullable();
-    $table->timestamps();
-});
+{
+    Schema::create('pesertas', function (Blueprint $table) {
+        $table->id();
+        $table->string('nama');
+        $table->string('asal_sekolah');
+        $table->string('ttl')->nullable(); // tempat tanggal lahir
+        $table->string('kecamatan')->nullable();
+        $table->string('jenis_kelamin')->nullable();
+        $table->text('alamat')->nullable();
+        $table->string('no_hp')->nullable();
+        $table->string('foto')->nullable(); // simpan path foto
+        $table->timestamps();
+    });
+}
 
-    }
 
     /**
      * Reverse the migrations.

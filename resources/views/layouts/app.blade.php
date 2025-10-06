@@ -22,13 +22,37 @@
             </h1>
         </div>
         <nav class="space-y-2">
-            <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded bg-blue-800">Dashboard</a>
-            <a href="#" class="block px-3 py-2 rounded hover:bg-blue-900">Daftar Peserta</a>
-            <a href="#" class="block px-3 py-2 rounded hover:bg-blue-900">Kriteria</a>
-            <a href="#" class="block px-3 py-2 rounded hover:bg-blue-900">Penilaian</a>
-            <a href="#" class="block px-3 py-2 rounded hover:bg-blue-900">Hasil</a>
-            <a href="#" class="block px-3 py-2 rounded hover:bg-blue-900">Laporan</a>
-        </nav>
+    <a href="{{ route('dashboard') }}" 
+       class="block px-3 py-2 rounded {{ request()->routeIs('dashboard') ? 'bg-blue-800 text-white' : 'hover:bg-blue-900' }}">
+        Dashboard
+    </a>
+
+    <a href="{{ route('peserta.index') }}" 
+       class="block px-3 py-2 rounded {{ request()->routeIs('peserta.*') ? 'bg-blue-800 text-white' : 'hover:bg-blue-900' }}">
+        Daftar Peserta
+    </a>
+
+    <a href="{{ route('kriteria.index') }}" 
+       class="block px-3 py-2 rounded {{ request()->routeIs('kriteria.*') ? 'bg-blue-800 text-white' : 'hover:bg-blue-900' }}">
+        Kriteria
+    </a>
+
+    <a href="{{ route('penilaian.index') }}" 
+       class="block px-3 py-2 rounded {{ request()->routeIs('penilaian.*') ? 'bg-blue-800 text-white' : 'hover:bg-blue-900' }}">
+        Penilaian
+    </a>
+
+    <a href="{{ route('hasil.index') }}" 
+       class="block px-3 py-2 rounded {{ request()->routeIs('hasil.*') ? 'bg-blue-800 text-white' : 'hover:bg-blue-900' }}">
+        Hasil
+    </a>
+
+    <a href="#" 
+       class="block px-3 py-2 rounded hover:bg-blue-900">
+        Laporan
+    </a>
+</nav>
+
     </aside>
 
     <!-- Main content -->
