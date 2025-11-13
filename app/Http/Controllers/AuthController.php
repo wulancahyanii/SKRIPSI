@@ -18,13 +18,30 @@ class AuthController extends Controller
     // Proses Login
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/dashboard');
+            $user = Auth::user();
+
+            // Cek role user dan arahkan ke halaman sesuai peran
+            if ($user->role === 'panitia') {
+                // Panitia diarahkan ke dashboard utama
+                return redirect()->route('dashboard');
+            } elseif ($user->role === 'juri') {
+                // Juri diarahkan ke halaman penilaian
+                return redirect()->route('juri.dashboard');
+            } else {
+                Auth::logout();
+                return back()->withErrors(['email' => 'Role pengguna tidak dikenali.']);
+            }
         }
 
-        return back()->with('error', 'Email atau password salah.');
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
     }
 
     // Halaman Register
@@ -46,7 +63,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'juri', // Default role bisa diganti sesuai kebutuhan
+            'role' => 'panitia', // default
         ]);
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');

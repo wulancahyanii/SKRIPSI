@@ -11,7 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Daftar middleware yang ingin kamu daftarkan secara global atau per route
+    $middleware->alias([
+        'juri' => \App\Http\Middleware\JuriMiddleware::class,
+        'panitia' => \App\Http\Middleware\PanitiaMiddleware::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

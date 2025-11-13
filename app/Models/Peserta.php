@@ -9,14 +9,27 @@ class Peserta extends Model
 {
     use HasFactory;
 
+    protected $table = 'peserta';
+
     protected $fillable = [
-        'nama',
-        'asal_sekolah',
+        'nama_lengkap',
+        'nama_panggilan',
         'ttl',
-        'kecamatan',
         'jenis_kelamin',
+        'kecamatan',
+        'agama',
         'alamat',
         'no_hp',
-        'foto'
+        'tinggi_badan',
+        'berat_badan',
+        'pendidikan',
+        'instansi',
+        'hobi',
+        'keterampilan',
+        'organisasi',
+        'foto',
+        'identitas',
+        'alasan',
+        'harapan',
     ];
 }
